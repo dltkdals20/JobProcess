@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 
 // --- 아이콘 컴포넌트들 ---
 const BotIcon = (props) => (
@@ -199,7 +199,6 @@ export default function App() {
   const [error, setError] = useState(null);
 
   const [isGuideModalOpen, setIsGuideModalOpen] = useState(false);
-  const [selectedStep, setSelectedStep] = useState(null);
   const [generatedGuide, setGeneratedGuide] = useState(null);
   const [isGeneratingGuide, setIsGeneratingGuide] = useState(false);
   const [guideError, setGuideError] = useState(null);
@@ -230,7 +229,7 @@ export default function App() {
       systemInstruction: { parts: [{ text: systemPrompt }] },
       generationConfig: {
         responseMimeType: "application/json",
-        responseSchema: { type: "OBJECT", properties: { geminiRoles: { type: "ARRAY", items: { type: "OBJECT", properties: { title: { type: "STRING" }, description: { type: "STRING" }, features: { type: "ARRAY", items: { type: "STRING" } } }, required: ["title", "description", "features"]}}, workflowSteps: { type: "ARRAY", items: { type: "OBJECT", properties: { number: { type: "INTEGER" }, title: { type: "STRING" }, assignee: { type: "STRING" }, description: { type: "STRING" } }, required: ["number", "title", "assignee", "description"]}}}, required: ["geminiRoles", "workflowSteps"], },
+        responseSchema: { type: "OBJECT", properties: { geminiRoles: { type: "ARRAY", items: { type: "OBJECT", properties: { title: { type: "STRING" }, description: { type: "STRING" }, features: { type: "ARRAY", items: { type: "STRING" } } }, required: ["title", "description", "features"]}}, workflowSteps: { type: "ARRAY", items: { type: "OBJECT", properties: { number: { type: "INTEGER" }, title: { type: "STRING" }, assignee: { type: "STRING" }, description: { type: "STRING" } }, required: ["number", "title", "assignee", "description"]}}, required: ["geminiRoles", "workflowSteps"], },
       },
     };
     try {
@@ -287,14 +286,12 @@ export default function App() {
   };
 
   const handleStepClick = (step) => {
-    setSelectedStep(step);
     setIsGuideModalOpen(true);
     generateGemGuide(step);
   };
 
   const handleCloseModal = () => {
     setIsGuideModalOpen(false);
-    setSelectedStep(null);
     setGeneratedGuide(null);
     setGuideError(null);
   }
