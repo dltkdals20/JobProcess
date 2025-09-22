@@ -1,0 +1,18 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html, body, #root {
+  height: 100%;
+}
+
+/* Tailwind 파이프라인 확인용 전역 스타일 */
+body {
+  @apply bg-neutral-50 text-neutral-900;
+}
+
+@layer base {
+  button {
+    @apply bg-amber-400 text-black hover:bg-amber-500 border border-amber-300 rounded-md;
+  }
+} 

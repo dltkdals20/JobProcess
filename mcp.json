@@ -1,0 +1,11 @@
+{
+  "mcpServers": {
+    "notion": {
+      "command": "npx",
+      "args": ["-y", "@suekou/mcp-notion-server"],
+      "env": {
+        "NOTION_API_TOKEN": "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"
+      }
+    }
+  }
+}
